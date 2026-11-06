@@ -43,10 +43,28 @@
   cursor: pointer;
 }
 
+#ListToolbar {
+  display: flex;
+  width: -webkit-fill-available;
+  width: stretch;
+  justify-content: space-between;
+}
+
 #ItemsCounter {
   font-size: small;
   padding: 10px 10px;
-  width: -webkit-fill-available;
-  width: stretch;
   text-align: left;
+}
+
+#ListToolbar button {
+  width: auto;
+  background: unset;
+  border: unset;
+  font-size: small;
+  color: light-dark(#58a6ff, #007bff);
+  cursor: pointer;
+}
+
+#ListToolbar button:hover{
+    text-decoration: underline;
 }

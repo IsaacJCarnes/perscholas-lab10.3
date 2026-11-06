@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-import "./Dashboard.css";
-import type { FilterProps, ToDo } from "../../types";
-import useLocalStorage from "../../hooks/useLocalStorage.tsx";
-import { filterToDos } from "../../utils/toDoUtils.ts";
+import type { FilterProps, ToDo } from "./types";
+import useLocalStorage from "./hooks/useLocalStorage.tsx";
+import { filterToDos } from "./utils/toDoUtils.ts";
 
-import ToDoForm from "../ToDoForm/ToDoForm.tsx";
-import ToDoFilter from "../ToDoFilter/ToDoFilter.tsx";
-import ToDoList from "../ToDoList/ToDoList.tsx";
-import ThemeButton from "../ThemeToggleButton/ThemeToggleButton.jsx";
+import ToDoForm from "./components/ToDoForm/ToDoForm.tsx";
+import ToDoFilter from "./components/ToDoFilter/ToDoFilter.tsx";
+import ToDoList from "./components/ToDoList/ToDoList.tsx";
+import ThemeButton from "./components/ThemeToggleButton/ThemeToggleButton.jsx";
+import "./App.css";
 
-export default function Dashboard() {
+function App() {
   const { storageData, setStorageItem } = useLocalStorage();
   const toDos: Array<ToDo> = storageData.toDos ? storageData.toDos : [];
   const lightMode: string = storageData.lightMode
@@ -80,3 +80,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default App;

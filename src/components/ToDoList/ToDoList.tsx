@@ -8,7 +8,11 @@ export default function ToDoList({
   onDelete,
   onEdit,
 }: ToDoListProps) {
-  return (
+  const completedToDosAmount = toDos.filter((toDO) =>
+    toDO.status.includes("completed"),
+  ).length;
+
+  return toDos.length > 0 ? (
     <div id="ToDoList">
       <ul>
         {toDos.map((toDo, index) => (
@@ -22,7 +26,16 @@ export default function ToDoList({
           />
         ))}
       </ul>
-      <div id="ItemsCounter">{toDos.length} {toDos.length == 1 ? "item" : "items"} left</div>
+      <div id="ListToolbar">
+        <div id="ItemsCounter">
+          {toDos.length} {toDos.length == 1 ? "item" : "items"} left
+        </div>
+        {completedToDosAmount > 0 && (
+          <button>Clear Completed ({completedToDosAmount})</button>
+        )}
+      </div>
     </div>
+  ) : (
+    <div className="reminderText">No todos yet! Add one above.</div>
   );
 }
