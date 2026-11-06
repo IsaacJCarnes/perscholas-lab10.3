@@ -1,0 +1,97 @@
+#Dashboard {
+  color: var(--text);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav h2 {
+  margin: 10px 20px;
+  flex-grow: 1;
+}
+
+form {
+  padding: 0px;
+  margin: 5px 0px;
+}
+
+#ToDoForm {
+  position: relative;
+  max-width: 500px;
+  width: -webkit-fill-available;
+  width: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-sizing: content-box;
+  padding-top: 20px;
+  border: 0px solid var(--border-color);
+  border-top-width: 1px;
+}
+
+#ToDoForm input {
+  background-color: var(--item-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  height: 26px;
+  margin: 0px;
+  padding: 4px;
+  flex-grow: 1;
+}
+
+#FilterForm {
+  width: fit-content;
+  max-width: 100%;
+  display: flex;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+#FilterForm button,
+#ToDoForm button,
+.lightButton {
+  cursor: pointer;
+  border: 1px solid;
+  padding: 10px 13px;
+  font-weight: 500;
+  font-size: normal;
+  border-radius: 4px;
+}
+
+#ToDoForm button {
+  border-color: var(--blue-button-bg);
+  background: var(--blue-button-bg);
+  color: var(--blue-button-text);
+}
+
+#ToDoForm button:hover {
+  background-color: var(--blue-button-hover);
+  border-color: var(--blue-button-hover);
+}
+
+#FilterForm button {
+  border-color: var(--button-hover);
+  background: var(--button-bg);
+}
+
+#FilterForm button:hover {
+  background: var(--button-hover);
+}
+
+#FilterForm button:disabled {
+  border-color: var(--blue-button-bg);
+  background: var(--blue-button-bg);
+  color: var(--blue-button-text);
+  font-weight: 600;
+}
+
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}

@@ -1,17 +1,21 @@
 import { useState } from "react";
 
+import "./Dashboard.css";
 import type { FilterProps, ToDo } from "../../types";
 import useLocalStorage from "../../hooks/useLocalStorage.tsx";
-
 import { filterToDos } from "../../utils/toDoUtils.ts";
 
 import ToDoForm from "../ToDoForm/ToDoForm.tsx";
 import ToDoFilter from "../ToDoFilter/ToDoFilter.tsx";
 import ToDoList from "../ToDoList/ToDoList.tsx";
+import ThemeButton from "../ThemeToggleButton/ThemeToggleButton.jsx";
 
 export default function Dashboard() {
   const { storageData, setStorageItem } = useLocalStorage();
   const toDos: Array<ToDo> = storageData.toDos ? storageData.toDos : [];
+  const lightMode: string = storageData.lightMode
+    ? storageData.lightMode
+    : "light";
 
   const [editingID, setEditingID] = useState(-1);
 
@@ -30,8 +34,8 @@ export default function Dashboard() {
     setStorageItem("toDos", newToDos);
   };
 
-  const onEditSelect = (toDoIndex: number) => {
-    setEditingID(toDoIndex);
+  const onEditSelect = (id: string) => {
+    setEditingID(Number(id));
   };
 
   const onAddToDo = (toDo: ToDo) => {
@@ -51,11 +55,15 @@ export default function Dashboard() {
     setStorageItem("toDos", newToDos);
   };
 
+  const toggleTheme = () => {
+    setStorageItem("lightMode", lightMode.includes("light") ? "dark" : "light");
+  };
+
   return (
-    <div className="exampleSection">
+    <div id="Dashboard" className={`exampleSection ${lightMode}`}>
       <nav>
         <h2>Todo App (Context API)</h2>
-        <button>Switch to Light</button>
+        <ThemeButton lightMode={lightMode} toggleTheme={toggleTheme} />
       </nav>
       <ToDoForm
         onSubmitToDo={editingID > -1 ? onEditToDo : onAddToDo}

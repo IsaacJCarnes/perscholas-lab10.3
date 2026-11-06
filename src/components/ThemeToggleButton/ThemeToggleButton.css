@@ -1,0 +1,9 @@
+.lightButton{
+    width: fit-content;
+    height: fit-content;
+    background-color: var(--light-button);
+    color: var(--light-button-text);
+    border-width: 0px;
+    font-size: normal;
+    font-weight: 600;
+}

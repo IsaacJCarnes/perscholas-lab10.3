@@ -11,16 +11,15 @@ export interface ToDoListProps {
   editId: number;
   onStatusChange: (toDoId: string, newStatus: ToDoStatus) => void;
   onDelete: (toDoId: string) => void;
-  onEdit: (toDoIndex: number) => void;
+  onEdit: (toDoId: string) => void;
 }
 
 export interface ToDoItemProps {
-  index: number;
   editing:boolean
   toDo: ToDo;
   onStatusChange: (toDoId: string, newStatus: ToDoStatus) => void;
   onDelete: (toDoId: string) => void;
-  onEdit: (toDoIndex: number) => void;
+  onEdit: (toDoId: string) => void;
 }
 
 export interface FilterProps {

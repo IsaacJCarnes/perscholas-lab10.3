@@ -1,20 +1,28 @@
-//import "./ToDoList.css";
+import "./ToDoList.css";
 import type { ToDoListProps } from "../../types";
-import TaskItem from "./ToDoItem";
-export default function TaskList(props: ToDoListProps) {
+import ToDoItem from "./ToDoItem";
+export default function ToDoList({
+  toDos,
+  editId,
+  onStatusChange,
+  onDelete,
+  onEdit,
+}: ToDoListProps) {
   return (
-    <ul id="TaskList">
-      {props.toDos.map((toDo, index) => (
-        <TaskItem
-          key={index}
-          index={index}
-          toDo={toDo}
-          editing={index === props.editId}
-          onStatusChange={props.onStatusChange}
-          onDelete={props.onDelete}
-          onEdit={props.onEdit}
-        />
-      ))}
-    </ul>
+    <div id="ToDoList">
+      <ul>
+        {toDos.map((toDo, index) => (
+          <ToDoItem
+            key={index}
+            toDo={toDo}
+            editing={index === editId}
+            onStatusChange={onStatusChange}
+            onDelete={onDelete}
+            onEdit={onEdit}
+          />
+        ))}
+      </ul>
+      <div id="ItemsCounter">{toDos.length} {toDos.length == 1 ? "item" : "items"} left</div>
+    </div>
   );
 }

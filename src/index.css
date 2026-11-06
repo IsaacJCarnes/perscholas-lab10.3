@@ -1,17 +1,24 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
+  color-scheme: light dark;
+  --text: light-dark(#0a0a0a, #f1eded);
+  --text-h: light-dark(#08060d, #f3f4f6);
   --bg: #111111;
-  --element-bg: #ffffff;
-  --modal-bg: #f4f7f9;
-  --light-btn: #2c3e50;
-
+  --element-bg: light-dark(#ffffff, #252525);
+  --modal-bg: light-dark(#f4f7f9, #1a1a1a);
+  --light-button: light-dark(#34495e, #f39c12);
+  --light-button-text: light-dark(#f4f7f9, #1a1a1a);
+  --border-color: light-dark(#eeeeee, #3a3a3a);
+  --item-color: light-dark(#fff, #2a2a2a);
+  --button-bg: light-dark(#e0e0e0, #444);
+  --button-hover: light-dark(#bbb, #555);
+  --blue-button-bg: #007bff;
+  --blue-button-text: white;
+  --blue-button-hover: #0056b3;
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
 
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
+
   background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -20,17 +27,6 @@
 
   @media (max-width: 1024px) {
     font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #111111;
-    --element-bg: #2a2a2a;
-    --modal-bg: #1a1a1a;
-    --light-btn: #f1c40f;
   }
 }
 
