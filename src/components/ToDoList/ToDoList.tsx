@@ -3,8 +3,9 @@ import ToDoItem from "./ToDoItem";
 import { useContext } from "react";
 import { FilterContext, ToDoContext } from "../../context/AppProvider";
 import { filterToDos } from "../../utils/toDoUtils";
+
 export default function ToDoList() {
-  const { toDos, toggleTodo, onDelete, onEdit } = useContext(ToDoContext);
+  const { toDos, clearCompleted } = useContext(ToDoContext);
   const { filter } = useContext(FilterContext);
   const filteredToDos = filterToDos(toDos, filter);
   const completedToDosAmount = toDos.filter(
@@ -16,13 +17,7 @@ export default function ToDoList() {
       {filteredToDos.length != 0 ? (
         <ul>
           {filteredToDos.map((toDo, index) => (
-            <ToDoItem
-              key={index}
-              toDo={toDo}
-              toggleTodo={toggleTodo}
-              onDelete={onDelete}
-              onEdit={onEdit}
-            />
+            <ToDoItem key={index} toDo={toDo} />
           ))}
         </ul>
       ) : filter["status"] === "active" ? (
@@ -35,7 +30,9 @@ export default function ToDoList() {
           {toDos.length} {toDos.length == 1 ? "item" : "items"} left
         </div>
         {completedToDosAmount > 0 && (
-          <button>Clear Completed ({completedToDosAmount})</button>
+          <button onClick={clearCompleted}>
+            Clear Completed ({completedToDosAmount})
+          </button>
         )}
       </div>
     </div>

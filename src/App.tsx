@@ -14,25 +14,17 @@ import ToDoList from "./components/ToDoList/ToDoList.tsx";
 import ThemeButton from "./components/ThemeToggleButton/ThemeToggleButton.jsx";
 
 function App() {
-  const { toDos, addTodo, toggleCompleted, deleteTodo, editTodo, clearCompleted } =
-    useContext(ToDoContext);
-  const { filter, setFilter } = useContext(FilterContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   
   return (
     <div id="Dashboard" className={`exampleSection ${theme}`}>
       <nav>
         <h2>Todo App (Context API)</h2>
-        <ThemeButton lightMode={theme} toggleTheme={toggleTheme} />
+        <ThemeButton/>
       </nav>
-      <ToDoForm addTodo={addTodo} />
-      <ToDoFilter onFilterChange={setFilter} />
-      <ToDoList
-        toDos={toDos}
-        toggleCompleted={toggleCompleted}
-        onDelete={deleteTodo}
-        onEdit={editTodo}
-      />
+      <ToDoForm/>
+      <ToDoFilter />
+      <ToDoList />
     </div>
   );
 }

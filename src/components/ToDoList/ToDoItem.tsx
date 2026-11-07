@@ -1,11 +1,8 @@
-import type { ToDoStatus, ToDoItemProps } from "../../types";
+import { useContext } from "react";
+import { ToDoContext } from "../../context/AppProvider";
 
-export default function TaskItem({
-  toDo,
-  toggleTodo,
-  onDelete,
-  onEdit,
-}: ToDoItemProps) {
+export default function TaskItem({ toDo }) {
+  const { toggleTodo, deleteTodo, editTodo } = useContext(ToDoContext);
   const id = toDo.id;
   const isActive = toDo.status === "active";
   return (
@@ -13,11 +10,11 @@ export default function TaskItem({
       <input
         type="checkbox"
         checked={!isActive}
-        onClick={() => toggleTodo(id)}
+        onChange={() => toggleTodo(id)}
       />
       <div>{toDo.title}</div>
-      <button onClick={() => onEdit(id)}>✏️</button>
-      <button onClick={() => onDelete(id)}>🗑️</button>
+      <button onClick={() => deleteTodo(id)}>✏️</button>
+      <button onClick={() => editTodo(id)}>🗑️</button>
     </li>
   );
 }

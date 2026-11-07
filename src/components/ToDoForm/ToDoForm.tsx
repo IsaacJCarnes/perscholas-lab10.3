@@ -1,23 +1,25 @@
-import { useState } from "react";
-import type { ToDoFormProps } from "../../types";
+import { useContext, useState } from "react";
+import { ToDoContext } from "../../context/AppProvider";
 
-export default function ToDoForm({ addTodo }: ToDoFormProps) {
-  const [title, setTitle] = useState<string>("");
+export default function ToDoForm() {
+  const [title, setTitle] = useState("");
+  const { addTodo } = useContext(ToDoContext);
 
-  const submitForm = (event: React.SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const submitForm = (e) => {
+    e.preventDefault();
     if (!title) return;
+    console.log("adding to do")
     addTodo(title);
-    setTitle("");
+    setTitle("")
   };
 
   return (
-    <form onSubmit={submitForm} id="ToDoForm">
+    <form onSubmit={(e) => submitForm(e)} id="ToDoForm">
       <input
         name="title"
+        placeholder="What needs to be done?"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="What needs to be done?"
       />
       <button type="submit">Add ToDo</button>
     </form>

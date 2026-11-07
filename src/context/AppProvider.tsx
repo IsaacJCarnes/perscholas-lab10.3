@@ -16,7 +16,7 @@ export function AppProvider({ children }) {
     setToDoId(toDoId + 1);
     setStorageItem("toDos", newToDos);
   };
-  const toggleTodo = (id: string | number) => {
+  const toggleTodo = (id: number) => {
     const newToDos = toDos.map((toDo) => {
       return toDo.id === id
         ? {
@@ -27,12 +27,12 @@ export function AppProvider({ children }) {
     });
     setStorageItem("toDos", newToDos);
   };
-  const deleteTodo = (id: string | number) => {
+  const deleteTodo = (id: number) => {
     const newToDos = toDos.filter((toDo) => toDo.id !== id);
     setStorageItem("toDos", newToDos);
   };
 
-  const editTodo = (id: string | number, newText: string) => {
+  const editTodo = (id: number, newText: string) => {
     const newToDos = toDos.map((toDo) => {
       return toDo.id === id ? { ...toDo, title: newText } : { ...toDo };
     });
