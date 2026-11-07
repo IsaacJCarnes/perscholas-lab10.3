@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import type { FilterProps, ToDoFilterProps } from "../../types";
+import { useContext } from "react";
 
 import { FilterContext } from "../../context/AppProvider";
 
