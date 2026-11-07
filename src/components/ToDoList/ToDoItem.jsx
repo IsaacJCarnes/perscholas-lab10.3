@@ -13,8 +13,8 @@ export default function TaskItem({ toDo }) {
         onChange={() => toggleTodo(id)}
       />
       <div>{toDo.title}</div>
-      <button onClick={() => deleteTodo(id)}>✏️</button>
-      <button onClick={() => editTodo(id)}>🗑️</button>
+      <button onClick={() => editTodo(id)}>✏️</button>
+      <button onClick={() => deleteTodo(id)}>🗑️</button>
     </li>
   );
 }
