@@ -8,16 +8,14 @@ export interface ToDo {
 
 export interface ToDoListProps {
   toDos: ToDo[];
-  editId: number;
-  onStatusChange: (toDoId: string, newStatus: ToDoStatus) => void;
+  toggleTodo: (id:string) => void;
   onDelete: (toDoId: string) => void;
   onEdit: (toDoId: string) => void;
 }
 
 export interface ToDoItemProps {
-  editing:boolean
   toDo: ToDo;
-  onStatusChange: (toDoId: string, newStatus: ToDoStatus) => void;
+  toggleTodo: (id:string) => void;
   onDelete: (toDoId: string) => void;
   onEdit: (toDoId: string) => void;
 }
@@ -31,6 +29,5 @@ export interface ToDoFilterProps {
 }
 
 export interface ToDoFormProps {
-  onSubmitToDo: (toDo: ToDo) => void;
-  nextId: string;
+  addTodo: (text:string) => void;
 }

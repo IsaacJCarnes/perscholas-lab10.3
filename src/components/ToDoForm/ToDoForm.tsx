@@ -1,18 +1,18 @@
 import { useState } from "react";
 import type { ToDoFormProps } from "../../types";
 
-export default function ToDoForm({ onSubmitToDo, nextId }: ToDoFormProps) {
+export default function ToDoForm({ addTodo }: ToDoFormProps) {
   const [title, setTitle] = useState<string>("");
 
-  const submitToDo = (event: React.SubmitEvent<HTMLFormElement>) => {
+  const submitForm = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!title) return;
-    onSubmitToDo({ id: nextId, title, status: "active" });
+    addTodo(title);
     setTitle("");
   };
 
   return (
-    <form onSubmit={submitToDo} id="ToDoForm">
+    <form onSubmit={submitForm} id="ToDoForm">
       <input
         name="title"
         value={title}

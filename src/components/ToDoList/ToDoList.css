@@ -16,6 +16,10 @@
   border-bottom-width: 1px;
 }
 
+#ToDoList .reminderText{
+    margin-top: 20px;
+}
+
 .toDoItem {
   padding: 10px 10px;
   background-color: var(--item-color);

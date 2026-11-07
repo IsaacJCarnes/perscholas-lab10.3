@@ -1,31 +1,35 @@
 import "./ToDoList.css";
-import type { ToDoListProps } from "../../types";
 import ToDoItem from "./ToDoItem";
-export default function ToDoList({
-  toDos,
-  editId,
-  onStatusChange,
-  onDelete,
-  onEdit,
-}: ToDoListProps) {
-  const completedToDosAmount = toDos.filter((toDO) =>
-    toDO.status.includes("completed"),
+import { useContext } from "react";
+import { FilterContext, ToDoContext } from "../../context/AppProvider";
+import { filterToDos } from "../../utils/toDoUtils";
+export default function ToDoList() {
+  const { toDos, toggleTodo, onDelete, onEdit } = useContext(ToDoContext);
+  const { filter } = useContext(FilterContext);
+  const filteredToDos = filterToDos(toDos, filter);
+  const completedToDosAmount = toDos.filter(
+    (toDO) => toDO["status"] == "completed",
   ).length;
 
   return toDos.length > 0 ? (
     <div id="ToDoList">
-      <ul>
-        {toDos.map((toDo, index) => (
-          <ToDoItem
-            key={index}
-            toDo={toDo}
-            editing={index === editId}
-            onStatusChange={onStatusChange}
-            onDelete={onDelete}
-            onEdit={onEdit}
-          />
-        ))}
-      </ul>
+      {filteredToDos.length != 0 ? (
+        <ul>
+          {filteredToDos.map((toDo, index) => (
+            <ToDoItem
+              key={index}
+              toDo={toDo}
+              toggleTodo={toggleTodo}
+              onDelete={onDelete}
+              onEdit={onEdit}
+            />
+          ))}
+        </ul>
+      ) : filter["status"] === "active" ? (
+        <div className="reminderText">No active todos. Well done!</div>
+      ) : (
+        <div className="reminderText">No completed todos yet.</div>
+      )}
       <div id="ListToolbar">
         <div id="ItemsCounter">
           {toDos.length} {toDos.length == 1 ? "item" : "items"} left

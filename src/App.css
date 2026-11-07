@@ -99,6 +99,7 @@ form {
 
 .reminderText{
     color: light-dark(#6c757d, #888);
+    font-style: italic;
 }
 
 .light {
