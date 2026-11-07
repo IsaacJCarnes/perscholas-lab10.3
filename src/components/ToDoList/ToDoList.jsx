@@ -1,6 +1,6 @@
 import "./ToDoList.css";
 import ToDoItem from "./ToDoItem";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FilterContext, ToDoContext } from "../../context/AppProvider";
 import { filterToDos } from "../../utils/toDoUtils.js";
 
@@ -8,6 +8,8 @@ export default function ToDoList() {
   const { toDos, clearCompleted } = useContext(ToDoContext);
   const { filter } = useContext(FilterContext);
   const filteredToDos = filterToDos(toDos, filter);
+  const [editingID, setEditingID] = useState(-1);
+
   const completedToDosAmount = toDos.filter(
     (toDO) => toDO["status"] == "completed",
   ).length;
@@ -17,7 +19,7 @@ export default function ToDoList() {
       {filteredToDos.length != 0 ? (
         <ul>
           {filteredToDos.map((toDo, index) => (
-            <ToDoItem key={index} toDo={toDo} />
+            <ToDoItem key={index} isEditing={toDo.id === editingID} setEditingID={setEditingID} toDo={toDo} />
           ))}
         </ul>
       ) : filter["status"] === "active" ? (
