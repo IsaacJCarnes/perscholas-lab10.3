@@ -1,5 +1,4 @@
 import { useState, createContext } from "react";
-import type { FilterProps, ToDo } from "../types";
 import useLocalStorage from "../hooks/useLocalStorage";
 export const FilterContext = createContext(null);
 export const ThemeContext = createContext(null);
@@ -7,16 +6,14 @@ export const ToDoContext = createContext(null);
 
 export function AppProvider({ children }) {
   const { storageData, setStorageItem } = useLocalStorage();
-  const toDos: Array<ToDo> = storageData.toDos ? storageData.toDos : [];
+  const toDos = storageData.toDos ? storageData.toDos : [];
+  const nextId = toDos.length > 0 ? toDos[toDos.length - 1].id + 1 : 0;
 
-  const [toDoId, setToDoId] = useState(0);
-
-  const addTodo = (text: string) => {
-    const newToDos = [...toDos, { id: toDoId, title: text, status: "active" }];
-    setToDoId(toDoId + 1);
+  const addTodo = (text) => {
+    const newToDos = [...toDos, { id: nextId, title: text, status: "active" }];
     setStorageItem("toDos", newToDos);
   };
-  const toggleTodo = (id: number) => {
+  const toggleTodo = (id) => {
     const newToDos = toDos.map((toDo) => {
       return toDo.id === id
         ? {
@@ -27,12 +24,12 @@ export function AppProvider({ children }) {
     });
     setStorageItem("toDos", newToDos);
   };
-  const deleteTodo = (id: number) => {
+  const deleteTodo = (id) => {
     const newToDos = toDos.filter((toDo) => toDo.id !== id);
     setStorageItem("toDos", newToDos);
   };
 
-  const editTodo = (id: number, newText: string) => {
+  const editTodo = (id, newText) => {
     const newToDos = toDos.map((toDo) => {
       return toDo.id === id ? { ...toDo, title: newText } : { ...toDo };
     });
@@ -44,9 +41,9 @@ export function AppProvider({ children }) {
     setStorageItem("toDos", newToDos);
   };
 
-  const [filter, setFilter] = useState<FilterProps>({});
+  const [filter, setFilter] = useState({});
 
-  const theme: string = storageData.theme ? storageData.theme : "light";
+  const theme = storageData.theme ? storageData.theme : "light";
 
   function toggleTheme() {
     setStorageItem("theme", theme === "light" ? "dark" : "light");

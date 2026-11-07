@@ -2,7 +2,7 @@ import "./ToDoList.css";
 import ToDoItem from "./ToDoItem";
 import { useContext } from "react";
 import { FilterContext, ToDoContext } from "../../context/AppProvider";
-import { filterToDos } from "../../utils/toDoUtils";
+import { filterToDos } from "../../utils/toDoUtils.js";
 
 export default function ToDoList() {
   const { toDos, clearCompleted } = useContext(ToDoContext);
